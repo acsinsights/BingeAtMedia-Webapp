@@ -22,7 +22,8 @@
 
                             <div
                                 class="social-icon d-flex justify-content-center justify-content-md-start align-items-center">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/localbinge?igsh=MnlicnEzN2F4ZDY0" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>

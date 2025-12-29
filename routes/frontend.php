@@ -33,9 +33,11 @@ Route::get('/contact', [PageController::class, 'contact'])->name('frontend.conta
 
 // Privacy Policy page
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('frontend.privacy-policy');
+Route::get('/privacy', [PageController::class, 'privacyPolicy'])->name('privacy');
 
 // Terms of Service page
 Route::get('/terms-of-service', [PageController::class, 'termsOfService'])->name('frontend.terms-of-service');
+Route::get('/terms', [PageController::class, 'termsOfService'])->name('terms');
 
 // Form submissions
 Route::post('/contact/submit', [PageController::class, 'submitContact'])->name('frontend.contact.submit');

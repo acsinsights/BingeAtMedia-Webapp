@@ -186,7 +186,7 @@ class PageController extends Controller
     public function privacyPolicy()
     {
         $pageMeta = $this->getPageMeta('frontend.privacy-policy');
-        return view('frontend.privacy-policy', compact('pageMeta'));
+        return view('frontend.privacy', compact('pageMeta'));
     }
     /**
      * Display the terms of service page
@@ -194,7 +194,7 @@ class PageController extends Controller
     public function termsOfService()
     {
         $pageMeta = $this->getPageMeta('frontend.terms-of-service');
-        return view('frontend.terms-of-service', compact('pageMeta'));
+        return view('frontend.terms', compact('pageMeta'));
     }
     /**
      * Display the sitemap page
