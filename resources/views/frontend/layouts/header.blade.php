@@ -72,6 +72,9 @@
              <li><a href="service-details.html">service Details</a></li>
             </ul> -->
                                 </li>
+                                <li>
+                                    <a href="{{ route('frontend.blog') }}">Blog</a>
+                                </li>
 
                                 <!-- <li> pricing comment out
             <a href="#pricing">Pricing</a>

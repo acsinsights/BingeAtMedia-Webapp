@@ -11,8 +11,8 @@
 
         .blog-breadcrumb {
             background: linear-gradient(135deg, #8400c7 0%, #6f00ff 100%);
-            padding: 125px 0 100px;
-            margin-bottom: 110px;
+            padding: 125px 0 80px;
+            margin-bottom: 0;
             position: relative;
             overflow: hidden;
         }
@@ -115,6 +115,150 @@
                 text-align: center !important;
             }
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .blog-breadcrumb {
+                padding: 80px 0 50px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .blog-breadcrumb h1 {
+                font-size: 1.875rem !important;
+                padding: 0 1.5rem;
+                line-height: 1.4 !important;
+                word-spacing: 0.05em;
+            }
+
+            .blog-layout>div:first-child>div {
+                padding: 1.5rem !important;
+                margin-top: 0 !important;
+            }
+
+            .blog-content {
+                font-size: 1rem !important;
+                line-height: 1.7 !important;
+            }
+
+            .blog-content h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .blog-content h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .blog-content h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .blog-content h4 {
+                font-size: 1.125rem !important;
+            }
+
+            .blog-content img {
+                margin: 1.5rem 0 !important;
+            }
+
+            /* Meta info responsive */
+            .blog-meta-info {
+                flex-direction: column !important;
+                gap: 1rem !important;
+                padding: 1rem !important;
+            }
+
+            /* Tags responsive */
+            .tags-section {
+                padding: 1.25rem 1rem !important;
+            }
+
+            .tags-section strong {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+
+            /* Share buttons responsive */
+            .share-section {
+                padding: 1.5rem 1rem !important;
+            }
+
+            .share-buttons {
+                justify-content: center !important;
+            }
+
+            .share-buttons a,
+            .share-buttons button {
+                width: 2.75rem !important;
+                height: 2.75rem !important;
+            }
+
+            /* Sidebar responsive */
+            .sidebar-card {
+                padding: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .recent-blog-item {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+
+            .recent-blog-item img {
+                width: 100% !important;
+                height: 200px !important;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                padding: 3rem 0 !important;
+            }
+
+            .cta-section h2 {
+                font-size: 1.875rem !important;
+            }
+
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-breadcrumb h1 {
+                font-size: 1.5rem !important;
+                line-height: 1.5 !important;
+                padding: 0 1.25rem;
+                word-spacing: 0.1em;
+                letter-spacing: 0.01em !important;
+            }
+
+            .blog-layout>div:first-child>div {
+                padding: 1.25rem !important;
+            }
+
+            .blog-content {
+                font-size: 0.9375rem !important;
+            }
+
+            .blog-content h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .blog-content h2 {
+                font-size: 1.375rem !important;
+            }
+
+            .breadcrumb {
+                font-size: 0.875rem !important;
+            }
+
+            .sidebar-card h5 {
+                font-size: 1.25rem !important;
+            }
+
+            .cta-section h2 {
+                font-size: 1.625rem !important;
+            }
+        }
     </style>
 @endpush
 
@@ -124,7 +268,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center position-relative">
                 <h1 class="text-white mb-4"
-                    style="font-size: 3rem; font-weight:600;font-family:sans-serif; letter-spacing: -0.02em; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.2;">
+                    style="font-size: 3rem; font-weight:600;font-family:sans-serif; letter-spacing: -0.01em; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.3; word-spacing: 0.05em;">
                     {{ $blog->title }}</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center" style="background: transparent;">
@@ -141,8 +285,8 @@
     </div>
 
     <!-- Blog Details Section -->
-    <div class="py-20" style="background: linear-gradient(to bottom, #f8f9ff 0%, #ffffff 100%);">
-        <div class="container mx-auto px-4" style="max-width: 1320px; margin-bottom: 100px;">
+    <div class="py-20" style="background: linear-gradient(to bottom, #f8f9ff 0%, #ffffff 100%); padding-top: 0;">
+        <div class="container mx-auto px-4" style="max-width: 1320px; margin-bottom: 100px; padding-top: 3rem;">
             <div class="blog-layout" style="display: grid; grid-template-columns: 1fr 380px; gap: 3rem;">
                 <!-- Main Content -->
                 <div>
@@ -166,7 +310,7 @@
                         @endif
 
                         <!-- Meta Info -->
-                        <div
+                        <div class="blog-meta-info"
                             style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; padding: 1.5rem; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 1rem; border-left: 4px solid #8400c7;">
                             @if ($blog->date)
                                 <div
@@ -180,30 +324,6 @@
                                     <span>{{ date('F d, Y', strtotime($blog->date)) }}</span>
                                 </div>
                             @endif
-
-                            @if ($blog->tags->count() > 0)
-                                <div
-                                    style="display: flex; align-items: center; gap: 0.625rem; color: #4b5563; font-size: 1rem; font-weight: 600;">
-                                    <svg style="width: 1.375rem; height: 1.375rem; color: #8400c7;" fill="currentColor"
-                                        viewBox="0 0 20 20">
-                                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z">
-                                        </path>
-                                    </svg>
-                                    <span>{{ $blog->tags->first()->name }}</span>
-                                </div>
-                            @endif
-
-                            <div
-                                style="display: flex; align-items: center; gap: 0.625rem; color: #4b5563; font-size: 1rem; font-weight: 600;">
-                                <svg style="width: 1.375rem; height: 1.375rem; color: #8400c7;" fill="currentColor"
-                                    viewBox="0 0 20 20">
-                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                                    <path fill-rule="evenodd"
-                                        d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span>{{ $blog->views ?? 0 }} Views</span>
-                            </div>
                         </div>
 
                         <!-- Blog Content -->
@@ -222,7 +342,7 @@
 
                         <!-- Tags -->
                         @if ($blog->tags->count() > 0)
-                            <div
+                            <div class="tags-section"
                                 style="margin-top: 3.5rem; padding: 1.5rem; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
                                 <strong
                                     style="color: #374151; margin-right: 0.5rem; font-size: 1.0625rem; font-weight: 700;">Tags:</strong>
@@ -238,11 +358,11 @@
                         @endif
 
                         <!-- Share Buttons -->
-                        <div
+                        <div class="share-section"
                             style="margin-top: 3.5rem; padding: 2rem; background: linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%); border-radius: 1rem;">
                             <h6 style="margin-bottom: 1.5rem; color: #1a1a1a; font-weight: 700; font-size: 1.1875rem;">Share
                                 this article:</h6>
-                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div class="share-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('frontend.blog.show', $blog->slug)) }}"
                                     target="_blank"
                                     style="display: inline-flex; align-items: center; justify-content: center; width: 3.25rem; height: 3.25rem; border-radius: 9999px; background: #3b5998; color: white; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 12px rgba(59,89,152,0.35);"
@@ -275,6 +395,13 @@
                                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 12px rgba(37,211,102,0.35)'">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
+                                <button onclick="copyBlogUrl()"
+                                    style="display: inline-flex; align-items: center; justify-content: center; width: 3.25rem; height: 3.25rem; border-radius: 9999px; background: #6f00ff; color: white; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(111,0,255,0.35);"
+                                    title="Copy URL"
+                                    onmouseover="this.style.transform='translateY(-4px) scale(1.1)'; this.style.boxShadow='0 8px 20px rgba(111,0,255,0.45)'"
+                                    onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 12px rgba(111,0,255,0.35)'">
+                                    <i class="fas fa-link"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -282,18 +409,41 @@
 
                 <!-- Sidebar -->
                 <div>
+                    <!-- Tags Section -->
+                    @if ($blog->tags && $blog->tags->count() > 0)
+                        <div class="sidebar-card"
+                            style="background: white; padding: 2.5rem; border: none; border-radius: 1.5rem; box-shadow: 0 20px 60px rgba(132, 0, 199, 0.08); margin-bottom: 2rem;">
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 3px solid #8400c7;">
+                                <h5
+                                    style="color: #1a1a1a; font-weight: 800; font-size: 1.5rem; font-family:sans-serif; margin: 0; letter-spacing: -0.01em;">
+                                    Tags</h5>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                                @foreach ($blog->tags as $tag)
+                                    <span
+                                        style="display: inline-block; padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%); color: #6f00ff; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; transition: all 0.3s; cursor: pointer; border: 2px solid transparent;"
+                                        onmouseover="this.style.background='linear-gradient(135deg, #6f00ff, #8400c7)'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(111,0,255,0.25)'"
+                                        onmouseout="this.style.background='linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%)'; this.style.color='#6f00ff'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                        #{{ $tag->name }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
                     @if ($recentBlogs->count() > 0)
-                        <div
+                        <div class="sidebar-card"
                             style="background: white; padding: 2.5rem; border: none; border-radius: 1.5rem; box-shadow: 0 20px 60px rgba(132, 0, 199, 0.08); position: sticky; top: 2rem;margin-top: 20px;">
-                            <div
-                                style="margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 3px solid transparent; background: linear-gradient(white, white) padding-box, linear-gradient(90deg, #8400c7, #6f00ff) border-box;">
+                            <div style="margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 3px solid #8400c7;">
                                 <h5
                                     style="color: #1a1a1a; font-weight: 800; font-size: 1.5rem; font-family:sans-serif; margin: 0; letter-spacing: -0.01em;">
                                     Recent Posts</h5>
                             </div>
                             @foreach ($recentBlogs as $recentBlog)
-                                <div style="display: flex; gap: 1.25rem; margin-bottom: {{ $loop->last ? '0' : '2rem' }}; padding-bottom: {{ $loop->last ? '0' : '2rem' }}; border-bottom: {{ $loop->last ? 'none' : '2px solid #f3f4f6' }}; transition: all 0.3s;"
-                                    onmouseover="this.style.paddingLeft='0.75rem'" onmouseout="this.style.paddingLeft='0'">
+                                <div class="recent-blog-item"
+                                    style="display: flex; gap: 1.25rem; margin-bottom: {{ $loop->last ? '0' : '2rem' }}; padding-bottom: {{ $loop->last ? '0' : '2rem' }}; border-bottom: {{ $loop->last ? 'none' : '2px solid #f3f4f6' }}; transition: all 0.3s;"
+                                    onmouseover="this.style.paddingLeft='0.75rem'"
+                                    onmouseout="this.style.paddingLeft='0'">
                                     <a href="{{ route('frontend.blog.show', $recentBlog->slug) }}">
                                         @php
                                             $recentImageUrl = $recentBlog->image;
@@ -347,12 +497,14 @@
     </div>
 
     <!-- CTA Section -->
-    <div
+    <div class="cta-section"
         style="background: linear-gradient(135deg, #8400c7 0%, #6f00ff 100%); padding: 5rem 0; position: relative; overflow: hidden;">
         <div class="container mx-auto px-4" style="position: relative;">
             <div class="cta-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: center;">
                 <div style="color: white;">
-                    <h2 style="font-size: 2.5rem; font-weight: 800;font-family:sans-serif; margin-bottom: 1rem; line-height: 1.2;">Ready to
+                    <h2
+                        style="font-size: 2.5rem; font-weight: 800;font-family:sans-serif; margin-bottom: 1rem; line-height: 1.2;">
+                        Ready to
                         Elevate Your Brand?</h2>
                     <p style="font-size: 1.125rem; margin: 0; opacity: 0.95; line-height: 1.7;">Let's create something
                         amazing together. Our digital marketing experts are here to help you succeed.</p>
@@ -369,4 +521,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function copyBlogUrl() {
+            const url = "{{ route('frontend.blog.show', $blog->slug) }}";
+            navigator.clipboard.writeText(url).then(function() {
+                // Success feedback
+                const btn = event.target.closest('button');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                btn.style.background = '#10b981';
+
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '#6f00ff';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy URL: ', err);
+                alert('Failed to copy URL. Please try again.');
+            });
+        }
+    </script>
 @endsection

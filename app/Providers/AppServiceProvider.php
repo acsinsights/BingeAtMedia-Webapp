@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-     public function boot(): void
+    public function boot(): void
     {
         // Share meta tags and GTM codes with frontend layout
         View::composer('frontend.layouts.app', function ($view) {
@@ -37,6 +37,19 @@ class AppServiceProvider extends ServiceProvider
             $view->with($metaTags)
                 ->with('gtmHeadCode', $gtmCodes->get('gtm-head-code')?->value ?? '')
                 ->with('gtmNoscriptCode', $gtmCodes->get('gtm-noscript-code')?->value ?? '');
+        });
+
+        // Share social media links and contact info with footer
+        View::composer('frontend.layouts.footer', function ($view) {
+            $socialLinks = WebsiteData::whereIn('slug', [
+                'social-facebook',
+                'social-twitter',
+                'social-instagram',
+                'social-whatsapp',
+                'social-linkedin'
+            ])->get()->keyBy('slug');
+
+            $view->with('socialLinks', $socialLinks);
         });
     }
 }

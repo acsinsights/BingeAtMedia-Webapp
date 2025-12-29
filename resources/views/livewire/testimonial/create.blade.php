@@ -13,19 +13,19 @@ new class extends Component {
     public $testimonial_name;
     public $position;
     public $review;
-    public $rating = 0;
-    public $is_published;
+    public $rating = 5;
+    public $is_published = false;
     public $image;
     public $config = ['aspectRatio' => 1];
     public function save()
     {
         $this->validate([
-            'testimonial_name' => 'required',
-            // 'position' => 'nullable',
-            'review' => 'required',
+            'testimonial_name' => 'required|string|max:255',
+            'position' => 'nullable|string|max:255',
+            'review' => 'required|string',
             'is_published' => 'nullable|boolean',
-            'rating' => 'nullable',
-            // 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+            'rating' => 'nullable|integer|min:0|max:5',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ]);
         // Save the Testimonial
         $testimonial = new Testimonial();
@@ -74,9 +74,9 @@ new class extends Component {
     <hr class="mb-5">
     <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <x-form wire:submit="save">
-            <x-input label="Name" wire:model="testimonial_name" />
-            {{-- <x-input label="Role" wire:model="position" /> --}}
-            <x-textarea label="Review" wire:model="review" />
+            <x-input label="Name" wire:model="testimonial_name" placeholder="Enter person's name" />
+            <x-input label="Position/Role" wire:model="position" placeholder="e.g., Founder at Company Name" />
+            <x-textarea label="Review" wire:model="review" rows="4" placeholder="Enter testimonial review" />
             <div class="flex items-center space-x-3 gap-7">
                 <div>
                     <label for="rating" class="font-semibold text-[0.875rem] mb-4">Rating</label>
@@ -92,9 +92,8 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- <x-file label="Image" wire:model="image" accept="image" crop-after-change :crop-config="$config">
-                <img id="imagePreview" src="https://placehold.co/300" class="h-40 rounded-lg" alt="Image Preview">
-            </x-file> --}}
+            <x-file label="Image (Optional)" wire:model="image" accept="image/png, image/jpeg, image/jpg"
+                hint="Max 1MB" />
             <x-slot:actions>
                 <x-button label="Submit" class="btn-primary" type="submit" spinner="save" />
             </x-slot:actions>

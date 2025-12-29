@@ -160,13 +160,15 @@ new class extends Component {
                     <x-textarea label="Meta Description" wire:model="description"
                         hint="The meta description for the blog" />
 
-                    <x-choices-offline label="Tags" wire:model="selected_tags" :options="$tags" searchable
-                        icon="o-rectangle-group">
-                        <x-slot:append>
-                            <x-button label="New" class="btn-primary rounded-s-none"
-                                @click="$wire.newTagModal = true" />
-                        </x-slot:append>
-                    </x-choices-offline>
+                    <div x-data="{ closeDropdown() { setTimeout(() => { const dropdown = this.$el.querySelector('.choices__list--dropdown'); if (dropdown) dropdown.style.display = 'none'; }, 100); } }">
+                        <x-choices-offline label="Tags" wire:model="selected_tags" :options="$tags" searchable
+                            icon="o-rectangle-group" @change="closeDropdown()">
+                            <x-slot:append>
+                                <x-button label="New" class="btn-primary rounded-s-none"
+                                    @click="$wire.newTagModal = true" />
+                            </x-slot:append>
+                        </x-choices-offline>
+                    </div>
                 </div>
             </div>
             <div class="grid content-start w-full h-full gap-8">

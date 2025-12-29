@@ -26,9 +26,80 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+                background: linear-gradient(to left, #8400c7, #6f00ff);
                 background-size: cover;
                 background-position: bottom;
+            }
+
+            /* Mobile Search Bar Fixes */
+            @media (max-width: 768px) {
+                .blog-breadcrumb {
+                    padding: 100px 0 80px;
+                }
+
+                .blog-breadcrumb h1 {
+                    font-size: 2rem !important;
+                }
+
+                .search-container {
+                    position: relative !important;
+                }
+
+                .search-icon-wrapper {
+                    display: none !important;
+                }
+
+                .search-input {
+                    padding: 0.75rem 1rem !important;
+                    font-size: 0.875rem !important;
+                }
+
+                .search-input::placeholder {
+                    font-size: 0.875rem;
+                }
+
+                .search-buttons-container {
+                    position: static !important;
+                    transform: none !important;
+                    margin-top: 0.75rem !important;
+                    flex-direction: row !important;
+                    justify-content: center !important;
+                    gap: 0.5rem !important;
+                    width: 100% !important;
+                }
+
+                .search-btn {
+                    padding: 0.625rem 1.25rem !important;
+                    font-size: 0.813rem !important;
+                    flex: 1 !important;
+                }
+
+                .clear-btn {
+                    padding: 0.625rem 1rem !important;
+                    font-size: 0.813rem !important;
+                    flex: 1 !important;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .blog-breadcrumb h1 {
+                    font-size: 1.75rem !important;
+                }
+
+                .search-input {
+                    padding: 0.688rem 0.875rem !important;
+                    font-size: 0.813rem !important;
+                }
+
+                .search-btn {
+                    padding: 0.563rem 1rem !important;
+                    font-size: 0.75rem !important;
+                }
+
+                .clear-btn {
+                    padding: 0.563rem 0.875rem !important;
+                    font-size: 0.75rem !important;
+                }
             }
         </style>
     @endpush
@@ -38,9 +109,10 @@
     <div class="blog-breadcrumb">
         <div class="container mx-auto px-4">
             <div class="text-center position-relative">
-                <h1 class="text-white mb-4" style="font-size: 3.5rem;font-family:sans-serif; font-weight: 500; letter-spacing: -0.02em;">Our Blogs
+                <h1 class="text-white mb-4"
+                    style="font-size: 3.5rem;font-family:sans-serif; font-weight: 500; letter-spacing: -0.02em;">Our Blogs
                 </h1>
-                <p class="text-white/90 text-lg mb-6 max-w-2xl mx-auto" style="opacity: 0.9;">Discover insights, tips, and
+                <p class="text-white text-lg mb-6 max-w-2xl mx-auto" style="opacity: 0.9;">Discover insights, tips, and
                     stories about digital marketing, branding, and creative solutions</p>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center" style="background: transparent;">
@@ -58,34 +130,35 @@
         <div class="container mx-auto px-4" style="max-width: 1280px;">
             <!-- Search Form -->
 
-            <div class="mb-16" style="margin-bottom: 4rem;">
-                <form method="GET" action="{{ route('frontend.blog') }}" style="max-width: 48rem; margin: 0 auto;">
-                    <div style="position: relative;">
-                        <div
-                            style="position: absolute; top: 50%; left: 1.5rem; transform: translateY(-50%); pointer-events: none;">
-                            <svg style="width: 1.25rem; height: 1.25rem; color: #9ca3af;" fill="none"
+            <div class="mb-16" style="margin-bottom: 4rem;padding-top:2rem;">
+                <form method="GET" action="{{ route('frontend.blog') }}"
+                    style="max-width: 48rem; margin: 0 auto; padding: 0 1rem;">
+                    <div class="search-container" style="position: relative;">
+                        <div class="search-icon-wrapper"
+                            style="position: absolute; top: 50%; left: 1.5rem; transform: translateY(-50%); pointer-events: none; z-index: 10;">
+                            <svg class="search-icon" style="width: 1.25rem; height: 1.25rem; color: #9ca3af;" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Search blogs by title, description, or content..."
-                            style="width: 100%; padding: 2rem 1rem 2rem 3.5rem;margin:1rem 0 1rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 1rem; outline: none; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: all 0.3s;"
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search blogs..."
+                            class="search-input"
+                            style="width: 100%; padding: 1rem 11rem 1rem 3rem; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 1rem; outline: none; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: all 0.3s; color: #1a1a1a;"
                             onfocus="this.style.borderColor='#8400c7'; this.style.boxShadow='0 0 0 4px rgba(132,0,199,0.1)'"
                             onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.1)'">
-                        <div
-                            style="position: absolute; top: 50%; right: 0.75rem; transform: translateY(-50%); display: flex; gap: 0.5rem;">
+                        <div class="search-buttons-container"
+                            style="position: absolute; top: 50%; right: 0.5rem; transform: translateY(-50%); display: flex; gap: 0.5rem; align-items: center;">
                             @if (request('search'))
-                                <a href="{{ route('frontend.blog') }}"
-                                    style="padding: 0.625rem 1.25rem; background: #f3f4f6; color: #374151; border-radius: 0.75rem; font-weight: 600; transition: all 0.3s; text-decoration: none;"
-                                    onmouseover="this.style.background='#e5e7eb'"
-                                    onmouseout="this.style.background='#f3f4f6'">
-                                    Clear
+                                <a href="{{ route('frontend.blog') }}" class="clear-btn"
+                                    style="padding: 0.625rem 1rem; background: #ff0000; color: #374151; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s; text-decoration: none; font-size: 0.875rem; display: inline-flex; align-items: center;"
+                                    onmouseover="this.style.background='#ff0000'"
+                                    onmouseout="this.style.background='#ff0000'">
+                                    Reset
                                 </a>
                             @endif
-                            <button type="submit"
-                                style="padding: 0.625rem 1.5rem; background: linear-gradient(135deg, #8400c7, #6f00ff); color: white; border: none; border-radius: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 6px rgba(132,0,199,0.3);"
+                            <button type="submit" class="search-btn"
+                                style="padding: 0.625rem 1.25rem; background: linear-gradient(135deg, #8400c7, #6f00ff); color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 6px rgba(132,0,199,0.3); font-size: 0.875rem;"
                                 onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(132,0,199,0.4)'"
                                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(132,0,199,0.3)'">
                                 Search
@@ -131,22 +204,6 @@
                                             onmouseout="this.style.transform='scale(1) rotate(0deg)'"
                                             onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=600&fit=crop'" />
                                     </a>
-
-                                    <!-- Tag Badge -->
-                                    @if ($blog->tags->count() > 0)
-                                        <div style="position: absolute; top: 20px; left: 20px; z-index: 10;">
-                                            <span
-                                                style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); color: #8400c7; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-                                                <svg style="width: 14px; height: 14px;" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                                {{ $blog->tags->first()->name }}
-                                            </span>
-                                        </div>
-                                    @endif
 
                                     <!-- Date Badge -->
                                     @if ($blog->date)
@@ -204,7 +261,6 @@
                         <div class="col-12">
                             <div
                                 style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 60px; flex-wrap: wrap;">
-                                {
                                 @if (!$blogs->onFirstPage())
                                     <a href="{{ $blogs->previousPageUrl() }}"
                                         style="padding: 0.75rem 1rem; background: white; color: #374151; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s; text-decoration: none;"

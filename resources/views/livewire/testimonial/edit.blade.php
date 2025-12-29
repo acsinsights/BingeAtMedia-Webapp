@@ -34,12 +34,12 @@ new class extends Component {
     public function save()
     {
         $this->validate([
-            'testimonial_name' => 'required',
-            // 'position' => 'nullable',
-            'review' => 'required',
-            'rating' => 'required',
+            'testimonial_name' => 'required|string|max:255',
+            'position' => 'nullable|string|max:255',
+            'review' => 'required|string',
+            'rating' => 'nullable|integer|min:0|max:5',
             'is_published' => 'nullable|boolean',
-            // 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ]);
 
         $this->testimonial->name = $this->testimonial_name;
@@ -101,8 +101,8 @@ new class extends Component {
     <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <x-form wire:submit="save">
             <x-input label="Name" wire:model="testimonial_name" />
-            {{-- <x-input label="Role" wire:model="position" /> --}}
-            <x-textarea label="Review" wire:model="review" />
+            <x-input label="Position/Role" wire:model="position" placeholder="e.g., Founder at Company Name" />
+            <x-textarea label="Review" wire:model="review" rows="4" />
 
             <div class="flex items-center space-x-3 gap-7">
                 <div>
@@ -119,12 +119,14 @@ new class extends Component {
                 </div>
             </div>
 
-            {{-- <x-file label="Image" wire:model="image" accept="image" crop-after-change :crop-config="$config">
-                <div class="mt-2">
-                    <img id="imagePreview" src="{{ $testimonial->image ?: 'https://placehold.co/300' }}"
-                        class="h-40 rounded-lg" alt="Image Preview">
-                </div>
-            </x-file> --}}
+            <x-file label="Image (Optional)" wire:model="image" accept="image/png, image/jpeg, image/jpg"
+                hint="Max 1MB">
+                @if ($testimonial->image)
+                    <div class="mt-2">
+                        <img src="{{ $testimonial->image }}" class="h-40 rounded-lg" alt="Current Image">
+                    </div>
+                @endif
+            </x-file>
             <x-slot:actions>
                 <div class="flex justify-between w-full mb-5">
                     <x-button label="Delete" class="btn-error" @click="$wire.Delete = true" />

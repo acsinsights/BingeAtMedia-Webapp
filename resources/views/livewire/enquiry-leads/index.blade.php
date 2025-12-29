@@ -12,7 +12,7 @@ new class extends Component {
     use Toast, WithPagination;
     #[Title(content: 'Enquiry Leads')]
     public $headers;
-    public $sortBy = ['column' => 'name', 'direction' => 'asc'];
+    public $sortBy = ['column' => 'created_at', 'direction' => 'desc'];
     public string $search = '';
     public $startDate;
     public $endDate;

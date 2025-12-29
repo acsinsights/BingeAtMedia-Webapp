@@ -393,10 +393,6 @@
                     drive results. Get in touch with our team today!
                 </p>
                 <div class="gt-cta-buttons wow fadeInUp" data-wow-delay=".6s">
-                    <a href="{{ route('frontend.contact') }}" class="gt-theme-btn"
-                        style="background-color: #ffffff; color: #8400c7; margin-right: 15px;">
-                        Start Your Project
-                    </a>
                     <a href="tel:+917219335227" class="gt-theme-btn"
                         style="background-color: transparent; border: 2px solid #ffffff; color: #ffffff;">
                         Call Us Now

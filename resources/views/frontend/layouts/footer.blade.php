@@ -22,8 +22,26 @@
 
                             <div
                                 class="social-icon d-flex justify-content-center justify-content-md-start align-items-center">
-                                <a href="https://www.instagram.com/localbinge?igsh=MnlicnEzN2F4ZDY0" target="_blank"><i
-                                        class="fab fa-instagram"></i></a>
+                                @if (isset($socialLinks) && $socialLinks->get('social-facebook')?->value)
+                                    <a href="{{ $socialLinks->get('social-facebook')->value }}" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                @endif
+                                @if (isset($socialLinks) && $socialLinks->get('social-twitter')?->value)
+                                    <a href="{{ $socialLinks->get('social-twitter')->value }}" target="_blank"><i
+                                            class="fab fa-twitter"></i></a>
+                                @endif
+                                @if (isset($socialLinks) && $socialLinks->get('social-instagram')?->value)
+                                    <a href="{{ $socialLinks->get('social-instagram')->value }}" target="_blank"><i
+                                            class="fab fa-instagram"></i></a>
+                                @endif
+                                @if (isset($socialLinks) && $socialLinks->get('social-whatsapp')?->value)
+                                    <a href="{{ $socialLinks->get('social-whatsapp')->value }}" target="_blank"><i
+                                            class="fab fa-whatsapp"></i></a>
+                                @endif
+                                @if (isset($socialLinks) && $socialLinks->get('social-linkedin')?->value)
+                                    <a href="{{ $socialLinks->get('social-linkedin')->value }}" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a>
+                                @endif
                             </div>
                         </div>
                     </div>

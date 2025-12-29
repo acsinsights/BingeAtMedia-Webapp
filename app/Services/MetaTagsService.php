@@ -6,9 +6,9 @@ use App\Models\PageMeta;
 
 class MetaTagsService
 {
-    private $siteName = 'Aviare';
-    private $defaultTitle = 'Aviare | Professional Business Solutions & Consulting Services';
-    private $defaultDescription = 'Aviare is a professional business solutions and consulting services company that provides tailored solutions for businesses of all sizes. We help entrepreneurs and companies set up and grow with ease.';
+    private $siteName = 'BingeAt Media';
+    private $defaultTitle = 'BingeAt Media | Creative Digital Marketing & Branding Agency';
+    private $defaultDescription = 'BingeAt Media - Creative Digital Marketing & Branding Agency specializing in social media marketing, content creation, branding, and digital advertising solutions.';
 
     /**
      * Generate meta tags data based on blog or pageMeta
@@ -80,4 +80,3 @@ class MetaTagsService
         return asset('storage/' . $blog->image);
     }
 }
-

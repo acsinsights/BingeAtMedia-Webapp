@@ -1816,6 +1816,7 @@ span {
   left: 0;
   width: 100%;
   z-index: 99999;
+  background:linear-gradient(to left, #8400c7, #6f00ff);;
 }
 .logo{
   width: 150px;

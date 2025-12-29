@@ -589,178 +589,180 @@
                     <div class="col-xl-10 col-lg-8">
                         <div class="swiper testimonial-slider-5">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box-items-5">
-                                        <div class="icon">
-                                            <img src="{{ asset('frontend/img/testimonial/icon.png') }}" alt="img">
-                                        </div>
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('frontend/img/testimonial/user.png') }}" alt="img">
-                                            <div class="shape-img">
-                                                <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
+                                @forelse($testimonials as $testimonial)
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-box-items-5">
+                                            <div class="icon">
+                                                <img src="{{ asset('frontend/img/testimonial/icon.png') }}"
                                                     alt="img">
                                             </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="client-info">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
+                                            <div class="testimonial-img">
+                                                @if ($testimonial->image)
+                                                    <img src="{{ asset('storage/' . $testimonial->image) }}"
+                                                        alt="{{ $testimonial->name }}">
+                                                @else
+                                                    <img src="{{ asset('frontend/img/testimonial/user.png') }}"
+                                                        alt="{{ $testimonial->name }}">
+                                                @endif
+                                                <div class="shape-img">
+                                                    <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
+                                                        alt="img">
                                                 </div>
-                                                <h5>Parth Rajput</h5>
-                                                <span>Founder at Accelerate Realty</span>
                                             </div>
-                                            <p>
-
-                                                "One of the best experiences I have had working with this
-                                                company. They have a professional approach, their services are
-                                                mind blowing, and the team is very supportive."
-                                            </p>
+                                            <div class="content">
+                                                <div class="client-info">
+                                                    @if ($testimonial->rating && $testimonial->rating > 0)
+                                                        <div class="star">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $testimonial->rating)
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                @else
+                                                                    <i class="fa-regular fa-star"></i>
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                    @endif
+                                                    <h5>{{ $testimonial->name }}</h5>
+                                                    <span>{{ $testimonial->position }}</span>
+                                                </div>
+                                                <p>{{ $testimonial->review }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box-items-5">
-                                        <div class="icon">
-                                            <img src="{{ asset('frontend/img/testimonial/icon.png') }}" alt="img">
-                                        </div>
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('frontend/img/testimonial/user.png') }}" alt="img">
-                                            <div class="shape-img">
-                                                <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
-                                                    alt="img">
+                                @empty
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-box-items-5">
+                                            <div class="content text-center">
+                                                <p>No testimonials available yet.</p>
                                             </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="client-info">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </div>
-                                                <h5>Nisheeth Srivastava</h5>
-                                                <span>(Founder At SORJM Agency)</span>
-                                            </div>
-                                            <p>
-                                                I have taken various digital marketing related services from
-                                                like graphic and logo designing etc..
-                                                They try to give you full satisfaction in their work. Addition
-                                                to this their guidance is also.
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box-items-5">
-                                        <div class="icon">
-                                            <img src="{{ asset('frontend/img/testimonial/icon.png') }}" alt="img">
-                                        </div>
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('frontend/img/testimonial/user.png') }}" alt="img">
-                                            <div class="shape-img">
-                                                <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
-                                                    alt="img">
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="client-info">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </div>
-                                                <h5>Sabir Shaikh</h5>
-                                                <span>(Founder At The Mental talkies)</span>
-                                            </div>
-                                            <p>
-
-                                                "Outstanding service! They boosted our visibility and engagement
-                                                with smart strategies. Professional team, quick
-                                                communication, and real results. Highly recommended!"
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box-items-5">
-                                        <div class="icon">
-                                            <img src="{{ asset('frontend/img/testimonial/icon.png') }}" alt="img">
-                                        </div>
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('frontend/img/testimonial/user.png') }}" alt="img">
-                                            <div class="shape-img">
-                                                <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
-                                                    alt="img">
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="client-info">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </div>
-                                                <h5>Sejal Bhobate</h5>
-                                                <span>(Digatal Marketer)</span>
-                                            </div>
-                                            <p>
-
-                                                "Team is very friendly and responsive, making them a valuable
-                                                partner for any brand looking to elevate its digital
-                                                marketing game. Looking forward to working again with the team
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-box-items-5">
-                                        <div class="icon">
-                                            <img src="{{ asset('frontend/img/testimonial/icon.png') }}" alt="img">
-                                        </div>
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('frontend/img/testimonial/user.png') }}" alt="img">
-                                            <div class="shape-img">
-                                                <img src="{{ asset('frontend/img/testimonial/shape.png') }}"
-                                                    alt="img">
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <div class="client-info">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </div>
-                                                <h5>Sakir Vanchesha</h5>
-                                                <span>(TAX SEAL)</span>
-                                            </div>
-                                            <p>
-
-                                                "We are extremely satisfied with the work and support we
-                                                received. The end result exceeded our expectations and was
-                                                delivered with great professionalism. Highly recommended!"
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section Start -->
+    <section class="blog-section fix section-padding"
+        style="background: linear-gradient(to bottom, #f8f9ff 0%, #ffffff 100%); padding: 100px 0;">
+        <div class="container">
+            <!-- Section Title -->
+            <div class="text-center mb-5" style="max-width: 700px; margin-left: auto; margin-right: auto;">
+                <h6
+                    style="color: #8400c7; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">
+                    Our Insights</h6>
+                <h2 style="font-size: 48px;font-family:sans-serif !important; font-weight: 800; color: #1a1a1a; line-height: 1.2; margin-bottom: 20px;">
+                    Latest Blogs & Articles</h2>
+                <p style="color: #6b7280; font-size: 18px; line-height: 1.6;">Discover insights, tips, and stories about
+                    digital marketing, branding, and creative solutions</p>
+            </div>
+
+            <!-- Blog Cards -->
+            <div class="row g-4" style="margin-bottom: 50px;">
+                @if ($blogs && $blogs->count() > 0)
+                    @foreach ($blogs->take(3) as $blog)
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="blog-card"
+                                style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); height: 100%;"
+                                onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 20px 50px rgba(132,0,199,0.25)'"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+
+                                <!-- Image Container -->
+                                <div
+                                    style="position: relative; overflow: hidden; background: linear-gradient(135deg, #8400c7, #6f00ff); height: 280px;">
+                                    <a href="{{ route('frontend.blog.show', $blog->slug) }}">
+                                        @php
+                                            $imageUrl = $blog->image ?? '';
+                                            if ($imageUrl && file_exists(public_path($imageUrl))) {
+                                                $imageUrl = asset($imageUrl);
+                                            } elseif ($imageUrl) {
+                                                $imageUrl = asset($imageUrl);
+                                            } else {
+                                                $imageUrl =
+                                                    'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=600&fit=crop';
+                                            }
+                                        @endphp
+                                        <img src="{{ $imageUrl }}" alt="{{ $blog->title }}"
+                                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;"
+                                            onmouseover="this.style.transform='scale(1.15) rotate(2deg)'"
+                                            onmouseout="this.style.transform='scale(1) rotate(0deg)'"
+                                            onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=600&fit=crop'" />
+                                    </a>
+
+                                    <!-- Date Badge -->
+                                    @if ($blog->date)
+                                        <div
+                                            style="position: absolute; bottom: 20px; right: 20px; background: #ffca06; color: #000; padding: 12px 16px; border-radius: 15px; box-shadow: 0 8px 20px rgba(255,202,6,0.4); text-align: center; min-width: 70px;">
+                                            <div style="font-size: 28px; font-weight: 800; line-height: 1;">
+                                                {{ date('d', strtotime($blog->date)) }}</div>
+                                            <div
+                                                style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px;">
+                                                {{ date('M', strtotime($blog->date)) }}</div>
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <!-- Content -->
+                                <div style="padding: 30px;">
+                                    <a href="{{ route('frontend.blog.show', $blog->slug) }}"
+                                        style="text-decoration: none;">
+                                        <h3 style="font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 15px; line-height: 1.3; min-height: 60px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: all 0.3s;"
+                                            onmouseover="this.style.color='#8400c7'; this.style.transform='translateX(5px)'"
+                                            onmouseout="this.style.color='#1a1a1a'; this.style.transform='translateX(0)'">
+                                            {{ $blog->title }}
+                                        </h3>
+                                    </a>
+
+                                    @if ($blog->description)
+                                        <p
+                                            style="color: #6b7280; line-height: 1.8; font-size: 15px; margin-bottom: 25px; min-height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                                            {{ Str::limit($blog->description, 130) }}
+                                        </p>
+                                    @else
+                                        <p
+                                            style="color: #6b7280; line-height: 1.8; font-size: 15px; margin-bottom: 25px; min-height: 75px;">
+                                            &nbsp;
+                                        </p>
+                                    @endif
+
+                                    <a href="{{ route('frontend.blog.show', $blog->slug) }}"
+                                        style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #8400c7, #6f00ff); color: white; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 15px rgba(132,0,199,0.3);"
+                                        onmouseover="this.style.gap='15px'; this.style.boxShadow='0 6px 25px rgba(132,0,199,0.45)'; this.style.transform='translateY(-2px)'"
+                                        onmouseout="this.style.gap='10px'; this.style.boxShadow='0 4px 15px rgba(132,0,199,0.3)'; this.style.transform='translateY(0)'">
+                                        Read Full Article
+                                        <svg style="width: 16px; height: 16px; transition: transform 0.3s;" fill="none"
+                                            stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12 text-center">
+                        <p style="color: #6b7280; font-size: 18px;">No blogs available yet.</p>
+                    </div>
+                @endif
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center">
+                <a href="{{ route('frontend.blog') }}"
+                    style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #8400c7, #6f00ff); color: white; padding: 18px 40px; border-radius: 50px; font-weight: 700; font-size: 16px; text-decoration: none; transition: all 0.3s; box-shadow: 0 8px 25px rgba(132,0,199,0.35);"
+                    onmouseover="this.style.gap='18px'; this.style.boxShadow='0 12px 35px rgba(132,0,199,0.5)'; this.style.transform='translateY(-3px)'"
+                    onmouseout="this.style.gap='12px'; this.style.boxShadow='0 8px 25px rgba(132,0,199,0.35)'; this.style.transform='translateY(0)'">
+                    View All Blogs
+                    <svg style="width: 20px; height: 20px; transition: transform 0.3s;" fill="none"
+                        stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>

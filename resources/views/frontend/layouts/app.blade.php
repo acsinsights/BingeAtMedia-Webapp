@@ -8,10 +8,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="Gramentheme">
-    <meta name="description" content="@yield('meta_description', 'BingeAt Media - Creative Digital Marketing & Branding Agency')">
+    <meta name="author" content="BingeAt Media">
+    <meta name="description"
+        content="{{ $metaDescription ?? 'BingeAt Media - Creative Digital Marketing & Branding Agency' }}">
+    @if (isset($metaKeywords) && $metaKeywords)
+        <meta name="keywords" content="{{ $metaKeywords }}">
+    @endif
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title"
+        content="{{ $metaTitle ?? 'BingeAt Media | Creative Digital Marketing & Branding Agency' }}">
+    <meta property="og:description"
+        content="{{ $metaDescription ?? 'BingeAt Media - Creative Digital Marketing & Branding Agency' }}">
+    <meta property="og:type" content="{{ isset($isBlog) && $isBlog ? 'article' : 'website' }}">
+    <meta property="og:url" content="{{ $currentUrl ?? url()->current() }}">
+    <meta property="og:site_name" content="{{ $siteName ?? 'BingeAt Media' }}">
+    @if (isset($blogImage))
+        <meta property="og:image" content="{{ $blogImage }}">
+    @endif
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+        content="{{ $metaTitle ?? 'BingeAt Media | Creative Digital Marketing & Branding Agency' }}">
+    <meta name="twitter:description"
+        content="{{ $metaDescription ?? 'BingeAt Media - Creative Digital Marketing & Branding Agency' }}">
+    @if (isset($blogImage))
+        <meta name="twitter:image" content="{{ $blogImage }}">
+    @endif
+
     <!-- ======== Page title ============ -->
-    <title>@yield('title', 'BingeAt Media | Creative Digital Marketing & Branding Agency')</title>
+    <title>{{ $metaTitle ?? 'BingeAt Media | Creative Digital Marketing & Branding Agency' }}</title>
     <!--<< Favcion >>-->
     <link rel="shortcut icon" href="{{ asset('frontend/img/FAB-ICON.png') }}">
     <!--<< Bootstrap min.css >>-->

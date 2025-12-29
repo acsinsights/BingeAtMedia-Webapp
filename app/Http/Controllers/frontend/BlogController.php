@@ -14,19 +14,19 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Blog::published()->orderBy('date', 'desc');
+        $query = Blog::published()->orderBy('created_at', 'desc');
 
         // Search functionality
         if ($request->has('search') && $request->search) {
             $searchTerm = $request->search;
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('title', 'like', "%{$searchTerm}%")
-                  ->orWhere('description', 'like', "%{$searchTerm}%")
-                  ->orWhere('content', 'like', "%{$searchTerm}%");
+                    ->orWhere('description', 'like', "%{$searchTerm}%")
+                    ->orWhere('content', 'like', "%{$searchTerm}%");
             });
         }
 
-        $blogs = $query->paginate(3);
+        $blogs = $query->paginate(6);
         $pageMeta = PageMeta::where('route_name', 'frontend.blog')->first();
 
         return view('frontend.blogs.index', compact('blogs', 'pageMeta'));
@@ -42,11 +42,10 @@ class BlogController extends Controller
         // Get recent posts (excluding current blog)
         $recentBlogs = Blog::published()
             ->where('id', '!=', $blog->id)
-            ->orderBy('date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->limit(3)
             ->get();
 
         return view('frontend.blogs.show', compact('blog', 'recentBlogs'));
     }
 }
-
