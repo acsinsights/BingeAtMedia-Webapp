@@ -10,9 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="BingeAt Media">
     <meta name="description"
-        content="{{ $metaDescription ?? 'BingeAt Media - Creative Digital Marketing & Branding Agency' }}">
+        content="{{ $metaDescription ?? ($siteMetaDescription ?? 'BingeAt Media - Creative Digital Marketing & Branding Agency') }}">
     @if (isset($metaKeywords) && $metaKeywords)
         <meta name="keywords" content="{{ $metaKeywords }}">
+    @elseif(!empty($siteMetaKeywords))
+        <meta name="keywords" content="{{ $siteMetaKeywords }}">
     @endif
 
     <!-- Open Graph Meta Tags -->
@@ -38,9 +40,25 @@
     @endif
 
     <!-- ======== Page title ============ -->
-    <title>{{ $metaTitle ?? 'BingeAt Media | Creative Digital Marketing & Branding Agency' }}</title>
+    <title>{{ $metaTitle ?? ($siteMetaTitle ?? 'BingeAt Media | Creative Digital Marketing & Branding Agency') }}</title>
     <!--<< Favcion >>-->
     <link rel="shortcut icon" href="{{ asset('frontend/img/FAB-ICON.png') }}">
+
+    <!-- Google Tag Manager (Head) -->
+    @if (!empty($gtmHeadCode))
+        {!! $gtmHeadCode !!}
+    @endif
+
+    <!-- Meta Pixel Code -->
+    @if (!empty($metaPixelCode))
+        {!! $metaPixelCode !!}
+    @endif
+
+    <!-- Google Analytics -->
+    @if (!empty($googleAnalyticsCode))
+        {!! $googleAnalyticsCode !!}
+    @endif
+
     <!--<< Bootstrap min.css >>-->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <!--<< All Min Css >>-->
@@ -284,6 +302,11 @@
 </head>
 
 <body>
+
+    <!-- Google Tag Manager (noscript) -->
+    @if (!empty($gtmNoscriptCode))
+        {!! $gtmNoscriptCode !!}
+    @endif
 
     @include('frontend.layouts.header')
 

@@ -29,14 +29,25 @@ class AppServiceProvider extends ServiceProvider
             $pageMeta = $view->getData()['pageMeta'] ?? null;
             $metaTags = $metaTagsService->generateMetaTags($blog, $pageMeta);
 
-            // Get GTM codes from WebsiteData
-            $gtmCodes = WebsiteData::whereIn('slug', ['gtm-head-code', 'gtm-noscript-code'])
-                ->get()
-                ->keyBy('slug');
+            // Get all website data from database
+            $websiteData = WebsiteData::whereIn('slug', [
+                'gtm-head-code',
+                'gtm-noscript-code',
+                'meta-pixel-code',
+                'google-analytics-code',
+                'meta-title',
+                'meta-description',
+                'meta-keywords'
+            ])->get()->keyBy('slug');
 
             $view->with($metaTags)
-                ->with('gtmHeadCode', $gtmCodes->get('gtm-head-code')?->value ?? '')
-                ->with('gtmNoscriptCode', $gtmCodes->get('gtm-noscript-code')?->value ?? '');
+                ->with('gtmHeadCode', $websiteData->get('gtm-head-code')?->value ?? '')
+                ->with('gtmNoscriptCode', $websiteData->get('gtm-noscript-code')?->value ?? '')
+                ->with('metaPixelCode', $websiteData->get('meta-pixel-code')?->value ?? '')
+                ->with('googleAnalyticsCode', $websiteData->get('google-analytics-code')?->value ?? '')
+                ->with('siteMetaTitle', $websiteData->get('meta-title')?->value ?? '')
+                ->with('siteMetaDescription', $websiteData->get('meta-description')?->value ?? '')
+                ->with('siteMetaKeywords', $websiteData->get('meta-keywords')?->value ?? '');
         });
 
         // Share social media links and contact info with footer
